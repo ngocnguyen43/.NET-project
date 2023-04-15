@@ -1,7 +1,6 @@
 ﻿using Newtonsoft.Json;
-using WebAPI.Models.Message;
 
-namespace WebAPI.Models
+namespace WebAPI.Models.Message
 {
 
     public class Response

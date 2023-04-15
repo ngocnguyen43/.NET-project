@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Http;
-using WebAPI.Models;
 using WebAPI.Utils.Exceptions;
 using WebAPI.Models.Message;
 using Newtonsoft.Json;

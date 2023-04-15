@@ -1,3 +1,4 @@
+using WebAPI.Data;
 using WebAPI.Services;
 using WebAPI.Services.interfaces;
 
@@ -11,8 +12,16 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 builder.Services.AddCors(options => options.AddPolicy("API-Cors",
     builder => builder.WithOrigins("").AllowCredentials().AllowAnyMethod()));
-builder.Services.AddTransient<IProduct,ProductService>();
+builder.Services.AddTransient<IProduct, ProductService>();
+builder.Services.AddAutoMapper(typeof(Program).Assembly);
 builder.Services.AddControllers();
+
+var connString = builder.Configuration.GetConnectionString("DefaultConnection");
+builder.Services.AddDbContext<AppDbContext>(options =>
+{
+    options.UseMySql(connString, ServerVersion.AutoDetect(connString));
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
