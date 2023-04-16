@@ -4,23 +4,32 @@ namespace WebAPI.Models.Message
 {
     public class Body
     {
-        private Body() { }
+        public Body() { }
         [JsonProperty]
-        private string? accessToken;
+        public string? accessToken { get; set; }
         [JsonProperty]
-        private string? refreshToken;
+        public string? refreshToken { get; set; }
+        [JsonProperty]
+        public Object? data { get; set; }
+
         public class Builder
         {
             private string? accessToken;
             private string? refreshToken;
-            public Builder(string accessToken)
+            private Object? data;
+            public Builder(string? accessToken)
             {
                 this.accessToken = accessToken;
 
             }
-            public Builder WithRefreshToken(string refreshToken)
+            public Builder WithRefreshToken(string? refreshToken)
             {
                 this.refreshToken = refreshToken;
+                return this;
+            }
+            public Builder WithData(Object? data)
+            {
+                this.data = data;
                 return this;
             }
             public Body Build()
@@ -28,6 +37,7 @@ namespace WebAPI.Models.Message
                 Body body = new Body();
                 body.accessToken = accessToken;
                 body.refreshToken = refreshToken;
+                body.data = data;
                 return body;
             }
         }

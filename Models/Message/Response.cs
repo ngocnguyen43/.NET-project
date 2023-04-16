@@ -5,13 +5,9 @@ namespace WebAPI.Models.Message
 
     public class Response
     {
-        [JsonProperty]
-        private Meta meta;
-        [JsonProperty]
-        private Body? body;
-        [JsonProperty]
-        private Pagination? pagination;
-        public Meta GetMeta() { return meta; }
+        public Meta meta { get; set; }
+        public Body? body { get; set; }
+        public Pagination? pagination { get; set; }
         public class Builder
         {
             private Meta meta;

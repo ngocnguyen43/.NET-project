@@ -6,7 +6,7 @@ namespace WebAPI.Dtos
     {
         //[JsonProperty]
         [JsonIgnore]
-        internal Guid Id { get; set; }
+        public String Id { get; set; }
         [JsonProperty]
         public string productName { get; set; }
         [JsonProperty]

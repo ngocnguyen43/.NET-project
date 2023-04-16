@@ -6,11 +6,11 @@ namespace WebAPI.Models.Message
     {
         private Pagination() { }
         [JsonProperty]
-        private int? currentPage;
+        public int? currentPage { get; set; }
         [JsonProperty]
-        private int? totalPages;
+        public int? totalPages { get; set; }
         [JsonProperty]
-        private int? totalResults;
+        public int? totalResults { get; set; }
         public class Builder
         {
             private int? currentPage;

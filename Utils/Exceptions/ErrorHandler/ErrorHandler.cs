@@ -4,18 +4,23 @@ using WebAPI.Utils.Exceptions;
 using WebAPI.Models.Message;
 using Newtonsoft.Json;
 using WebAPI.Services.interfaces;
+using Microsoft.AspNetCore.Mvc.Controllers;
+using CoreApiResponse;
+using System.Runtime.CompilerServices;
+using System.Net;
 
 namespace WebAPI.Utils.Exceptions.ErrorHandler
 {
-    public class ErrorHandler
+    public class ErrorHandler:BaseController
     {
+
         public static string Handle(HttpResponse resp, Func<Response> callback)
         {
             Response res;
             try
             {
                 res = callback();
-                resp.StatusCode = res.GetMeta().GetStatusCode();
+                resp.StatusCode = res.meta.GetStatusCode();
             }
             catch (ExceptionBase ex)
             {
@@ -26,6 +31,7 @@ namespace WebAPI.Utils.Exceptions.ErrorHandler
                     .Build();
                 res = new Response.Builder(meta).Build();
             }
+            //return new ErrorHandler().CustomResult(res.meta.message, res.body.data, (HttpStatusCode)res.meta.GetStatusCode());
             return Newtonsoft.Json.JsonConvert.SerializeObject(res,
                                 Newtonsoft.Json.Formatting.Indented,
                             new JsonSerializerSettings
@@ -33,5 +39,6 @@ namespace WebAPI.Utils.Exceptions.ErrorHandler
                                 NullValueHandling = NullValueHandling.Ignore,
                             });
         }
+
     }
 }

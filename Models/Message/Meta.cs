@@ -5,12 +5,9 @@ namespace WebAPI.Models.Message
     public class Meta
     {
         private Meta() { }
-        [JsonProperty]
-        private string message;
-        [JsonProperty]
-        private int statuscode;
-        [JsonProperty]
-        private int errorcode;
+        public string message { get; set; }
+        public int statuscode { get; set; }
+        public int errorcode { get; set; }
         public int GetStatusCode()
         {
             return this.statuscode;
